@@ -1,48 +1,60 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void swap() {
-
-
-}
-
-void bubble_step(int* artur, int inicio, int final) {
+void bubble_step(int* vet, int inicio, int final) {
 
 	for(int i = inicio; i < final; i++) {
 
-		if(artur[i] > artur[i + 1]) {
+		if(vet[i] > vet[i + 1]) {
 
-			int aux = artur[i];
-			artur[i] = artur[i + 1];
-			artur[i + 1] = aux;
+			int aux = vet[i];
+			vet[i] = vet[i + 1];
+			vet[i + 1] = aux;
 		}
 	}
 }
 
-void rock_step(int* artur, int inicio, int final) {
+void rock_step(int* vet, int inicio, int final) {
 
 	for(int i = final; i > inicio; i--) {
 
-		if(artur[i] < artur[i - 1]) {
+		if(vet[i] < vet[i - 1]) {
 
-			int aux = artur[i];
-			artur[i] = artur[i - 1];
-			artur[i - 1] = aux;
+			int aux = vet[i];
+			vet[i] = vet[i - 1];
+			vet[i - 1] = aux;
 		}
 	}
 }
 
-void shake_sort(int* artur, int tamanho) {
+void shake_sort(int* vet, int tamanho) {
 
 	int inicio = 0;
 	int final = tamanho - 1;
 
 	while(inicio != final) {
 
-		bubble_step(artur, inicio, final);
+		for(int i = inicio; i < final; i++) {
+			if(vet[i] > vet[i + 1]) {
+
+				int aux = vet[i];
+				vet[i] = vet[i + 1];
+				vet[i + 1] = aux;
+			}
+		}
 		final --;
+
 		if(inicio == final) break;
-		rock_step(artur, inicio, final);
+
+		for(int i = final; i > inicio; i--) {
+
+			if(vet[i] < vet[i - 1]) {
+
+				int aux = vet[i];
+				vet[i] = vet[i - 1];
+				vet[i - 1] = aux;
+			}
+		}
 		inicio ++;
 	}
 }
@@ -53,18 +65,18 @@ int main() {
 
 	scanf("%d",&tamanho);
 
-	int *artur = (int*)malloc(sizeof(int)*tamanho);
+	int *vet = (int*)malloc(sizeof(int)*tamanho);
 
 	for (int i = 0; i < tamanho;i++)
 	{
-		scanf("%d",&artur[i]);
+		scanf("%d",&vet[i]);
 	}
 
-	shake_sort(artur,tamanho);
+	shake_sort(vet,tamanho);
 
 	for (int i = 0; i < tamanho;i++)
 	{
-		printf("%d ",artur[i]);
+		printf("%d ",vet[i]);
 	}
 
 	return 0;
