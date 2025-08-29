@@ -1,0 +1,48 @@
+Analisando o Algoritmo, podemos visualizar como ele faz a ordenação do vetor. Cada for interno tem uma função e entender eles é essencial.
+
+Vamos nomear o primeiro for de "bubble-step" e o segundo for de "rock-step". Levando em conta uma entrada N = 8, obteríamos as seguintes figuras:
+
+bubble-step 	| rock-step
+*		| * *
+* * *		| * * * *
+* * * * *	| * * * * * *
+* * * * * * *	|
+
+Cada * representando uma iteração onde todas as trocas foram feitas dentro do laço.
+
+Ao somarmos as duas figuras, obtemos sua versão completa, que representa o número de execuções totais do while
+
+bubble + rock
+*
+* *
+* * *
+* * * *
+* * * * *
+* * * * * *
+* * * * * * *
+
+Nesse caso o número de execuções seria 1 + 2 + 3 + ... + N - 1.
+
+1 + 2 + 3 + ... + N - 1 = (N - 1)N / 2 = N² - N / 2
+
+Eu também pensei em uma outra forma mais incomum de visualizar a execução do Algoritmo, que consistia em enxergar a figura acima ao contrário.
+
+Se considerarmos que a cada execução o número de interações de cada for diminui de 1 em 1 (em decorrências das variáveis de controle), a figura completa também poderia ser vista assim:
+
+* * * * * * * 	1° bubble
+* * * * * * 	1° rock
+* * * * * 	2° bubble
+* * * * 	2° rock
+* * * 		3° bubble
+* * 		3° rock
+* 		4° bubble
+
+Acabaria chegando na mesma conclusão.
+
+Considerando o tempo de execução que foi deduzido acima, N² - N / 2, podemos fazer a seguinte análise:
+
+Como N² tem maior prioridade sobre as outras expressões, ela domina o custo dessa operação, então no pior caso o custo da função é O(N²).
+
+No caso médio, que seria quando os laços interno executam a metade da quantidade de vezes que seriam  executados no pior caso, também será O(N²), pois N² - N / 2 / 2 continua sendo dominado por N².
+
+No melhor caso, como no Algoritmo não foi feito nenhum tipo de sinalização pra caso o vetor já esteja ordenado e ele pare o loop, os seus laços ainda passam índice por índice e verificam 1 a 1 se são maiores (ou menores) que o índice seguinte, logo o tempo de execução continua sendo O(N²).
