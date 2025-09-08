@@ -66,17 +66,20 @@ int main() {
 
 	int tamanho;
 
+	printf("Tamanho do Vetor: ");
 	scanf("%d",&tamanho);
 
 	int *vet = (int*)malloc(sizeof(int)*tamanho);
 
 	for (int i = 0; i < tamanho;i++)
 	{
+		printf("\nVetor[%d]: ",i);
 		scanf("%d",&vet[i]);
 	}
 
 	shake_sort(vet,tamanho);
 
+	printf("Vetor Ordenado:\n");
 	for (int i = 0; i < tamanho;i++)
 	{
 		printf("%d ",vet[i]);

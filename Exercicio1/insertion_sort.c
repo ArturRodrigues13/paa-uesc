@@ -3,7 +3,7 @@
 
 void insertion_sort(int* vet, int tamanho) {
 
-	for(int i = 1; i < tamanho; i++) {
+	for(int i = 0; i < tamanho; i++) {
 
 		int chave = vet[i];
 		int j = i - 1;

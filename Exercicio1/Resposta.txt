@@ -1,3 +1,6 @@
+Exercício: Demonstre a complexidade de tempo do algoritmo ShakerSort para o pior caso, para o caso médio e para o melhor caso utilizando os princípios elucidados.
+
+
 Analisando o Algoritmo, podemos visualizar como ele faz a ordenação do vetor. Cada for interno tem uma função e entender eles é essencial.
 
 Vamos nomear o primeiro for de "bubble-step" e o segundo for de "rock-step". Levando em conta uma entrada N = 8, obteríamos as seguintes figuras:

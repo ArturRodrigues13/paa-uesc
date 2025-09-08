@@ -1,0 +1,37 @@
+Exercício: Prove a correção do algoritmo shakersort usando indução matemática ou laço invariante.
+
+Com base no código, estarei ultilizando três trechos principais para a prova, as linhas de 8 a 15 (Primeiro For), as linhas 24 a 31 (Segundo For) e o Loop While como um todo (Linhas 6 a 33);
+
+
+
+Laço invariante (Primeiro For, linhas 8 a 15):
+
+Inicialização: Considera-se que o sub vetor formado apenas pela última posição de A esteja ordenado, haja vista que este trecho do vetor possuí apenas um elemento;
+
+Manutenção: Seja A ordenado até as últimas K posições, antes da linha 9. Então A[N - K] ≤ ... ≤ A[N - 2] ≤ A[N - 1], sendo estes também os maiores K elementos do Vetor A. Após executar as linhas 9 a 14, um elemento x ocupará a posição A[N - (K+1)], sendo que x é menor ou igual a todos os elementos à sua direita (pela hipótese indutiva), e maior que todos os elementos à sua esquerda, devido à lógica das linhas 9 a 14. Logo, A[N - (K + 1)] ≤ A[N - K] ≤ ... ≤ A[N - 2] ≤ A[N - 1];
+
+Término: Provou-se que o último elemento do vetor é um sub vetor ordenado, por ser unitário (K = 1). Além disso, supondo-se que os K últimos elementos do vetor estejam ordenados, antes da linha 9, provou-se que os K + 1 últimos elementos do vetor ficam ordenados, antes da linha 9, na próxima interação do laço. Logo, o vetor A fica ordenado para K ≥ 1. Como n ≥ 1, o algoritmo termina com o vetor A ordenado.
+
+
+
+Laço invariante (Segundo For, linhas 24 a 31):
+
+Inicialização: Considera-se que o sub vetor formado apenas pela primeira posição de A esteja ordenado, haja vista que este trecho do vetor possui apenas um elemento;
+
+Manutenção: Seja A ordenado até as primeiras K posições, antes da linha 25. Então A[0] ≤ ... ≤ A[(K-1)] ≤ A[K] sendo estes também os menores K elementos do Vetor A. Após executar as linhas 25 a 30, um elemento x ocupará a posição A[(K+1)], sendo que x é maior ou igual a todos os elementos à sua esquerda (pela hipótese indutiva), e menor que todos os elementos à sua direita, devido à lógica das linhas 25 a 30. Logo, A[(K + 1)] ≥ A[K] ≥ ... ≥ A[1] ≥ A[0];
+
+Término: Provou-se que o primeiro elemento do vetor é um sub vetor ordenado, por ser unitário (K = 1). Além disso, supondo-se que os K primeiros elementos do vetor estejam ordenados, antes da linha 25, provou-se que os K + 1 primeiros elementos do vetor ficam ordenados, antes da linha 25, na próxima interação do laço. Logo, o vetor A fica ordenado para K ≥ 1. Como n ≥ 1, o algoritmo termina com o vetor A ordenado.
+
+
+
+While Loop, linhas 6 a 33:
+
+Como este loop contém ambos os trechos citados acima, ele tem como objetivo parar a função quando o vetor estiver ordenado, ou seja, quando ambos os loops tiverem sido executados o número correto de vezes para garantir a ordenação do vetor. Considerando N como o tamanho do vetor de entrada:
+
+- Caso N seja ímpar, cada For executará (N - 1) / 2 vezes.
+
+- Caso N seja par, o primeiro For executará (N / 2) vezes e o segundo (N - 1) / 2 vezes.
+
+Levando em conta uma entrada N = 8, sendo esse o tamanho de um vetor A, teremos o primeiro For executando 4 vezes e o segundo 3 vezes, após isso, as variáveis "inicio" e "final" se encontram no centro do vetor, ou seja, inicio = final = 3;
+
+Neste ponto do código, todos os elementos à esquerda de A[3] são menores que ele, e todos os elementos a sua direita são maiores que ele, ou seja, o vetor foi ordenado, o Loop while pode ser encerrado e a função é finalizada;
