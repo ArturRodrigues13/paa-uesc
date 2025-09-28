@@ -43,7 +43,7 @@ void sift(int* vetor, int i, int n) {
 
 void build(int* vetor, int n) {
 
-	for(int i = n / 2; i >= 0; i--) {
+	for(int i = n / 2 - 1; i >= 0; i--) {
 		sift(vetor, i, n);
 	}
 }
