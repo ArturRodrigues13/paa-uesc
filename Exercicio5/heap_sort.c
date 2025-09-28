@@ -15,7 +15,7 @@ int main() {
 
 	print_vetor(vetor, 10);
 
-	heap_sort(vetor, 9);
+	heap_sort(vetor, 10);
 
 	print_vetor(vetor,10);
 }
@@ -27,9 +27,9 @@ void sift(int* vetor, int i, int n) {
 	int aux;
 	int maior = i;
 
-	if(esq <= n && vetor[esq] > vetor[maior]) maior = esq;
+	if(esq < n && vetor[esq] > vetor[maior]) maior = esq;
 
-	if(dir <= n && vetor[dir] > vetor[maior]) maior = dir;
+	if(dir < n && vetor[dir] > vetor[maior]) maior = dir;
 
 	if(maior != i) {
 
@@ -52,11 +52,11 @@ void heap_sort(int* vetor, int n) {
 
 	build(vetor, n);
 
-	for(int i = n;i > 0; i--) {
+	for(int i = n - 1;i > 0; i--) {
 		int aux = vetor[i];
 		vetor[i] = vetor[0];
 		vetor[0] = aux;
-		sift(vetor,0 , i - 1);
+		sift(vetor,0,i);
 	}
 }
 
