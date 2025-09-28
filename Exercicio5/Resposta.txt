@@ -1,0 +1,39 @@
+Exercício: Calcule a complexidade de tempo do algoritmo heap sort, e mostre que ela é O(nlogn)
+
+
+
+Primeiro, vamos analisar o tempo de execução da função build. Sua lógica consiste num for loop que itera de I = piso(N/2) - 1 até 0. Em cada iteração desse loop, ele chama a função sift e passa como argumentos o tamanho N e o I que vem sendo decrementando a cada iteração.
+
+Vamos agora analisar o tempo da função sift. Sua lógica consiste em reorganizar a heap entre as posições I e N, fazendo chamadas recursivas até chegar em um nó que esteja com a propriedade estrutural correta. No pior caso, devemos considerar que a função fez todas as chamadas recursivas possíveis até atingir um nó folha (nó sem filhos), ou seja, ele percorreu a árvore descendo um nível de cada vez até atingir o nível máximo, que é a altura da árvore. 
+
+Considerando que a cada chamada o sift vai "cortando a árvore no meio", dividindo por 2 o número de nós, podemos presumir a seguinte recorrência:
+
+T(1) = 1, T(N) = T(N/2) + 1 (vou considerar o custo das checagens e atribuições como 1)
+
+Podemos expandir a recorrência
+
+T(N) = (T(N/4) + 1) + 1
+     = T(N/4) + 2
+
+T(N) = (T(N/8) + 2) + 1
+     = T(N/8) + 3
+
+T(N) = T(N/2^k) + K
+
+N/2^k = 1
+
+n = 2^k
+
+logn = k
+
+T(N) = T(N/2^logn) + logn
+
+T(N) = T(N/N) + logn
+
+T(N) = 1 + logn, ou seja, T(N) ∈ O(logn)
+
+Sabendo que a função sift tem custo O(logn) no seu pior caso, podemos voltar ao custo da função build. Ela chama a função sift piso(N/2) - 1 vezes, portanto seu custo é, grosseiramente falando, N/2(logn). Porém, nas iterações do loop, pode ser observado que sift começa na metade da árvore e vai subindo até a raiz, então mesmo no pior caso, ela não terá o custo máximo na maioria das recursões, a maioria custa apenas O(1). Isso faz com que o custo de build seja linear, O(N).
+
+Vamos agora para a última parte do algoritmo, o for loop que, agora sim, passa por toda a heap, chamando sift para cada um dos seus nós. Para cada chamada, temos o custo das trocas + o custo do sift, nos levando, no pior caso, a um custo O(nlogn)
+
+Somando tudo, vamos ter O(n) + O(nlogn), ou seja, o algoritmo heap sort tem complexidade de tempo O(nlogn)

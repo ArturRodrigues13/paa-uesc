@@ -20,7 +20,7 @@ int main() {
 	print_vetor(vetor,10);
 }
 
-void sift(int* vetor, int i, int n) {
+void sift(int* vetor, int i, int n) { // O(logn)
 
 	int esq = 2 * i + 1;
 	int dir = 2 * i + 2;
@@ -41,18 +41,18 @@ void sift(int* vetor, int i, int n) {
 	}
 }
 
-void build(int* vetor, int n) {
+void build(int* vetor, int n) { // O(n)
 
 	for(int i = n / 2 - 1; i >= 0; i--) {
 		sift(vetor, i, n);
 	}
 }
 
-void heap_sort(int* vetor, int n) {
+void heap_sort(int* vetor, int n) { // O(nlogn)
 
-	build(vetor, n);
+	build(vetor, n); // O(n)
 
-	for(int i = n - 1;i > 0; i--) {
+	for(int i = n - 1;i > 0; i--) { // O(nlogn)
 		int aux = vetor[i];
 		vetor[i] = vetor[0];
 		vetor[0] = aux;
