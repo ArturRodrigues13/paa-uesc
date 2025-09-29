@@ -4,7 +4,7 @@ Exercício: Calcule a complexidade de tempo do algoritmo heap sort, e mostre que
 
 Primeiro, vamos analisar o tempo de execução da função build. Sua lógica consiste num for loop que itera de I = piso(N/2) - 1 até 0. Em cada iteração desse loop, ele chama a função sift e passa como argumentos o tamanho N e o I que vem sendo decrementando a cada iteração.
 
-Vamos agora analisar o tempo da função sift. Sua lógica consiste em reorganizar a heap entre as posições I e N, fazendo chamadas recursivas até chegar em um nó que esteja com a propriedade estrutural correta. No pior caso, devemos considerar que a função fez todas as chamadas recursivas possíveis até atingir um nó folha (nó sem filhos), ou seja, ele percorreu a árvore descendo um nível de cada vez até atingir o nível máximo, que é a altura da árvore. 
+Vamos agora analisar o tempo da função sift. Sua lógica consiste em reorganizar a heap entre as posições I e N, fazendo chamadas recursivas até chegar em um nó que esteja com a propriedade estrutural correta. No pior caso, devemos considerar que a função fez todas as chamadas recursivas possíveis até atingir um nó folha (nó sem filhos), ou seja, ele percorreu a árvore descendo um nível de cada vez até atingir o nível máximo, que é a altura da árvore.
 
 Considerando que a cada chamada o sift vai "cortando a árvore no meio", dividindo por 2 o número de nós, podemos presumir a seguinte recorrência:
 
@@ -37,3 +37,19 @@ Sabendo que a função sift tem custo O(logn) no seu pior caso, podemos voltar a
 Vamos agora para a última parte do algoritmo, o for loop que, agora sim, passa por toda a heap, chamando sift para cada um dos seus nós. Para cada chamada, temos o custo das trocas + o custo do sift, nos levando, no pior caso, a um custo O(nlogn)
 
 Somando tudo, vamos ter O(n) + O(nlogn), ou seja, o algoritmo heap sort tem complexidade de tempo O(nlogn)
+
+
+
+Exercício: Explique porque o heapsort é um algoritmo guloso.
+
+
+
+O heapsort pode ser considerado um algoritmo guloso pois, como ele sempre mantêm a estrutura de heap durante a execução do seu segundo for loop interno, ele sempre garante que o maior elemento do vetor vai estar na primeira posição antes dele fazer a troca e chamar a função sift, ou seja, ele se apoia na propriedade de um max-heap que garante que o maior elemento vai estar na primeira posição para colocar esse elemento na sua posição correta no vetor ordenado. O que ele faz é:
+
+1- Achar o maior elemento da heap atual
+
+2- Colocar ela na sua posição correta no vetor
+
+3- Chamar a função sift, desconsiderando os elementos que já estão nas suas posições corretas, garantindo que vai pegar o maior elemento dos restantes.
+
+Isso caracteriza um comportamento guloso.
