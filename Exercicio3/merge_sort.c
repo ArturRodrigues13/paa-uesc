@@ -39,18 +39,26 @@ void merge(int* vetor, int inicio, int meio, int final) {
 
 	while(i < n1 && j < n2) {
         if(esquerda[i] <= direita[j]) {
-            vetor[k++] = esquerda[i++];
+            vetor[k] = esquerda[i];
+			k++;
+			i++;
         } else {
-            vetor[k++] = direita[j++];
+            vetor[k] = direita[j];
+			k++;
+			j++;
         }
     }
 
     while(i < n1) {
-        vetor[k++] = esquerda[i++];
+        vetor[k] = esquerda[i];
+		k++;
+		i++;
     }
 
     while(j < n2) {
-        vetor[k++] = direita[j++];
+        vetor[k] = direita[j];
+		k++;
+		j++;
     }
 }
 
